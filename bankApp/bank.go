@@ -2,13 +2,22 @@ package main
 
 import (
 	"fmt"
+	"os"
+	"strconv"
 )
+const accountBalance = "balance.txt"
+
+func getBalanceFromFile() float64{
+	data , _ := os.ReadFile(accountBalance)
+	balanceText := string(data)
+	balance , _ := strconv.ParseFloat(balanceText, 64)
+	return balance
+}
 
 func main(){
 
 	fmt.Print("Bank App\n")
-	var totalBalance float64 = 1000
-
+	var totalBalance = getBalanceFromFile()
 	
 	for {
 		fmt.Print("Choose an option:\n")
@@ -29,6 +38,7 @@ func main(){
 				continue
 			}
 			totalBalance += depositAmount
+			writeBalanceToFile(totalBalance)
 			fmt.Print("Total Balance:", totalBalance, "\n")	
 		case 2:
 			var withdrawAmount float64
@@ -49,9 +59,7 @@ func main(){
 			fmt.Print("Thanks for choosing our bank!\n")
 			return	
 		}
-	
 	}
-
 }
 
 func getUserInput(promptText string) float64 {
@@ -59,5 +67,10 @@ func getUserInput(promptText string) float64 {
 	fmt.Println(promptText)
 	fmt.Scan(&userInput)
 	return userInput
+}
+
+func writeBalanceToFile(balance float64){
+	balanceText := fmt.Sprint(balance)
+	os.WriteFile(("balance.txt"), []byte(balanceText), 0644)
 }
 
