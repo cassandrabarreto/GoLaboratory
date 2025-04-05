@@ -1,30 +1,18 @@
 package main
 
 import (
-	"errors"
 	"fmt"
-	"os"
-	"strconv"
+
+	"example.com/bank/filemanager"
 )
 const accountBalance = "balance.txt"
 
-func getBalanceFromFile() (float64, error){
-	data , err := os.ReadFile(accountBalance)
-
-	if err != nil {
-		return 1000, errors.New("failed to find balance")
-		//panic("Exit the program.")
-	} 
-	balanceText := string(data)
-	balance , _ := strconv.ParseFloat(balanceText, 64)
-	return balance, nil
-}
 
 func main(){
 
 	fmt.Print("Bank App\n")
 	
-	var totalBalance , err = getBalanceFromFile()
+	var totalBalance , err = filemanager.GetBalanceFromFile(accountBalance)
 
 	if err != nil{
 		fmt.Println("ERROR")
@@ -45,7 +33,7 @@ func main(){
 				continue
 			}
 			totalBalance += depositAmount
-			writeBalanceToFile(totalBalance, accountBalance)
+			filemanager.WriteBalanceToFile(totalBalance, accountBalance)
 			fmt.Print("Total Balance:", totalBalance, "\n")	
 		case 2:
 			var withdrawAmount float64
@@ -76,9 +64,6 @@ func getUserInput(promptText string) float64 {
 	return userInput
 }
 
-func writeBalanceToFile(balance float64, fileName string){
-	balanceText := fmt.Sprint(balance)
-	os.WriteFile((fileName), []byte(balanceText), 0644)
-}
+
 
 
