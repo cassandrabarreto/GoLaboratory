@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"example.com/bank/filemanager"
+	"github.com/Pallinder/go-randomdata"
 )
 const accountBalance = "balance.txt"
 
@@ -11,6 +12,7 @@ const accountBalance = "balance.txt"
 func main(){
 
 	fmt.Print("Bank App\n")
+	fmt.Println("Costumer Support: ", randomdata.PhoneNumber())
 	
 	var totalBalance , err = filemanager.GetBalanceFromFile(accountBalance)
 
