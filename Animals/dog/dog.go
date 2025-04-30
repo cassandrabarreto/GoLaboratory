@@ -30,7 +30,7 @@ func (dogData *Dog) OutputDogData() {
 	fmt.Println(dogData.name, dogData.breed, dogData.age)
 }
 
-func (catData *Dog) MakeSound() error {
+func (dogData *Dog) MakeSound() error {
 	fmt.Println("WOOOOOF!")
 	return nil 
 }
