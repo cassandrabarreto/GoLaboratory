@@ -39,20 +39,57 @@ func main (){
 		return
 	}
 
+	/*Output*/
 	appDog.OutputDogData()
 	appCat.OutputCatData()
 
+	/*Make Sounds*/
 	appDog.MakeSound()
 	appCat.MakeSound()
 
+	/*Move*/
+	appDog.Move()
+	appCat.Move()
+
 }
 	
-
-
 func getAnimalData(promptText string) string {
 	fmt.Print(promptText)
 	var value string
 	fmt.Scanln(&value)
 	return value
+}
+
+/*Interface that allows any value*/
+func printAnything(value interface{}){
+
+	/*Instead of adding the switch you can do the following:*/
+	intVal , ok := value.(int)
+	if ok {
+		fmt.Println("It's an integer!", intVal)
+		return 
+	}
+
+	floatVal , ok := value.(float64)
+	if ok {
+		fmt.Println("It's a float!", floatVal)
+		return 
+	}
+
+	stringVal , ok := value.(string)
+	if ok {
+		fmt.Println("It's a string!", stringVal)
+		return 
+	}
+
+	/*Add special switch that checks type*/
+	// switch value.(type) {
+	// case int:
+	//	fmt.Println("It's an integer!")
+	//case string:
+	//	fmt.Println("It's a string!")
+	//case float64:
+	//	fmt.Println("It's a float!")
+	//}	
 }
 

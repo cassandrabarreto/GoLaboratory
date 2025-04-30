@@ -33,5 +33,9 @@ func (catData *Cat) MakeSound() error {
 	return nil 
 }
 
+func (catData *Cat) Move() error {
+	fmt.Println(catData.name + " just jumped!")
+	return nil
+}
 
 
