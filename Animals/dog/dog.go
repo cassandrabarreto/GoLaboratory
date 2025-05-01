@@ -35,4 +35,9 @@ func (dogData *Dog) MakeSound() error {
 	return nil 
 }
 
+func (dogData *Dog) Move() error {
+	fmt.Println(dogData.name + " is running!")
+	return nil
+}
+
 

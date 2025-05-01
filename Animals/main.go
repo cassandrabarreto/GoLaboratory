@@ -93,3 +93,9 @@ func printAnything(value interface{}){
 	//}	
 }
 
+
+/*Generic function that takes any int or float value*/
+func add[T int|float64](a, b T) T{
+	return a + b
+}
+
