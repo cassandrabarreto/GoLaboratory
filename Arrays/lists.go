@@ -47,6 +47,13 @@ func main(){
 	// Append method to add elements to array. But you can only add slices to arrays.
 	updatedPrices := append(dogs, "Slinky")
 	fmt.Println(updatedPrices)
+
+	pets := []string{"Bobby", "Marcus", "Lola", "Bosco"}
+	petCats :=[]string{"Milaneso", "Panqueco", "Cebollo"}
+
+	// Operator to merge lists in other lists
+	pets = append(pets, petCats...)
+	fmt.Println(pets)
 }
 
 func printIndexValues(arr [4]float64){
