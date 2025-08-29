@@ -15,6 +15,14 @@ type User struct {
 	createdAt time.Time
 }
 
+/* This struct will 'embedd' User struct */
+type Admin struct {
+	email string
+	password string
+	/* user User can also be implemented but it's annoying to always call admin.User to use user functions */
+	User
+}
+
 /* user starts in uppercase because it should be accesible from outside. */
 func New(firstName, lastName, birthDate string) (*User, error) {
 
@@ -28,6 +36,21 @@ func New(firstName, lastName, birthDate string) (*User, error) {
 	birthDate: birthDate,
 	createdAt : time.Now(),
 	}, nil
+}
+
+/* Create constructor for Admin struct*/
+func NewAdmin(email string, password string ) *Admin {
+
+	return &Admin{
+		email: email,
+		password : password,
+		User: User {
+			firstName : "ADMIN",
+			lastName : "ADMIN",
+			birthDate : "---",
+			createdAt : time.Now(),
+		}, 
+	}
 }
 
 // This is how you specify a struct function 

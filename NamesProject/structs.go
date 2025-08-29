@@ -13,8 +13,11 @@ func main() {
 
 	/* Create external struct instance */
 	var appUser *user.User
-
+	
 	appUser , err := user.New(retrievedFirstName, retrievedLastName, retrievedBirthdate)
+
+	admin := user.NewAdmin("test@example.com", "testpass")
+	admin.OutputUserData()
 
 	if err != nil{
 		fmt.Println(err)
@@ -24,6 +27,9 @@ func main() {
 	appUser.OutputUserData()
 	appUser.ClearUserName()
 	appUser.OutputUserData()
+
+	admin.OutputUserData()
+
 
 	/*  
 	You can also use:

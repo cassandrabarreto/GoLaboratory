@@ -7,26 +7,47 @@ import (
 	"strings"
 
 	"example.com/note/note"
+	"example.com/note/to_do"
 )
 
 func main () {
-	title, content  := getNoteData()
-	userNote , err := note.NewNote(title, content)
+	title, content := getNoteData()
+	todoText := getUserInput("To do Text")
+	text := getUserInput("Type something")
+	
+
+	todo, err := to_do.NewToDo(todoText)
+	
+	if err != nil {
+    		fmt.Println("Error creating ToDo:", err)
+    	return
+	}
+	
+	todo.Display()
+
+	err = todo.Save()
 
 	if err != nil {
-		fmt.Println(err)
-		return
+    		fmt.Println("Error saving ToDo list.")
+    	return
 	}
+
+	userNote, err := note.NewNote(title, content)
+	if err != nil {
+    		fmt.Println("Error creating Note:", err)
+    	return
+	}
+
 	userNote.Display()
-	err = userNote.Save()
 
-	if err != nil{
-		fmt.Println("Error Saving.")
-		return 
-		
+	err = userNote.Save()
+	
+	if err != nil {
+    		fmt.Println("Error saving Note.")
+    	return
 	}
 
-	fmt.Println("Note Saved.")
+	fmt.Println("Note Saved successfully.")
 	
 }
 
@@ -49,6 +70,12 @@ func getUserInput(prompt string) string {
 
 	return text
 }
+
+
+func getTodoData() string{
+	return getUserInput("Todo text:")
+}
+
 
 /* Function that returns two parts: title and Note.*/
 func getNoteData()(string, string){
