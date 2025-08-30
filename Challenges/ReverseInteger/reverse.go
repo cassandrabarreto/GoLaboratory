@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"slices"
 	"strconv"
 	"strings"
@@ -13,17 +14,15 @@ func main(){
 
 func reverse(x int) int {
 	
-	var value int = x
 	var isNegativeNumber = false
 
-	converted := strconv.Itoa(value)
+	if x < 0{
+		isNegativeNumber = true
+		x = -x
+	}
+	converted := strconv.Itoa(x)
 
 	list := strings.Split(converted, "")
-
-	if list[0] == "-"{
-		list = slices.Delete(list,0, 1)
-		isNegativeNumber = true
-	}
 
 	slices.Reverse(list)
 	reversed_string := strings.Join(list, "")
@@ -36,6 +35,7 @@ func reverse(x int) int {
 
 	if isNegativeNumber {
 		reversed_number = -(reversed_number)
+		fmt.Println(reversed_number)
 	}
 	
 	// If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.
