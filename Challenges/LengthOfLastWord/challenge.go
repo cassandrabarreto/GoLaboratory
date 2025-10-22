@@ -5,21 +5,19 @@ import (
 	"strings"
 )
 
-
 func lengthOfLastWord(s string) int {
 	phrase := strings.TrimSpace(s)
 	wordList := strings.Split(phrase, " ")
-	if len(wordList) == 0 {
-		return 0
-	}
-	return len(wordList[len(wordList)-1])
+	number := checkWord(wordList, 0)
+	return number
 }
-
 
 func checkWord(wordList []string, index int) int {
 	if index >= len(wordList) {
-		return len(wordList[index-1])
+		new_val := len(wordList[index-1])
+		return new_val
 	}
+
 	return checkWord(wordList, index+1)
 }
 
