@@ -1,4 +1,4 @@
-##Go Lab 🧪
+Go Lab 🧪
 
 A Go learning and practice repository: small applications, concurrency examples, coding challenges, and exercises in structs, pointers, and API design.
 
